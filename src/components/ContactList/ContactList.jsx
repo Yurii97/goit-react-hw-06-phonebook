@@ -1,7 +1,17 @@
 import Contact from '../Contact/Contact';
 import { ListStyled } from './ContactList.styled';
+import {  useDispatch, useSelector } from 'react-redux'
+import {removeContact} from '../../redux/contacts/contacts-actions'
+import toast from 'react-hot-toast';
 
-export default function ContactList({ contacts, filter, deleteContact }) {
+export default function ContactList() {
+  const {contacts, filter} = useSelector(state=>state.contacts)
+  const dispatch = useDispatch();
+  
+  const deleteContact =(id)=>{
+    dispatch(removeContact(id))
+    toast.success('delete is complete');
+  }
   return (
     <>
       <section>
