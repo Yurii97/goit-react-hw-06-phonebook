@@ -16,7 +16,7 @@ export default function ContactList() {
     <>
       <section>
         <ListStyled>
-          {contacts
+          {contacts.length>0 && contacts
             .filter(contact =>
               contact.name.toLowerCase().includes(filter.toLowerCase())
             )

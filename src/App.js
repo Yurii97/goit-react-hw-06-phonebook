@@ -6,11 +6,11 @@ import ContactList from './components/ContactList/ContactList';
 import ContactForm from './components/ContactForm/ContactForm';
 
 function App() {
-  const contacts = useSelector(state=>state.contacts.contacts)
+  // const contacts = useSelector(state=>state.contacts.contacts)
   
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
   
   return (
     <>
@@ -19,7 +19,7 @@ function App() {
       <ContactForm />
       <h2>Contacts</h2>
       <Filter />
-      {contacts.length>0 && <ContactList/>}
+      <ContactList/>
     </>
   );
 }

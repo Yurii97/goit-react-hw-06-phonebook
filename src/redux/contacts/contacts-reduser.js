@@ -3,10 +3,19 @@ import {addContact, removeContact, filterAct} from './contacts-actions'
 
 const localContacts=localStorage.getItem('contacts');
 const parseContacts = JSON.parse(localContacts)
+const refLocalStorage=(arr)=>localStorage.setItem('contacts', JSON.stringify(arr))
 
 const contacts = createReducer(parseContacts?? [],{
-    [addContact]:(state, {payload})=>[payload, ...state],         
-    [removeContact]:(state, {payload})=>state.filter(({id})=>id!==payload)
+    [addContact]:(state, {payload})=>{
+        const refContacts = [payload, ...state];
+        refLocalStorage(refContacts);
+        return refContacts
+    },         
+    [removeContact]:(state, {payload})=>{
+        const refContacts = state.filter(({id})=>id!==payload);
+        refLocalStorage(refContacts);
+        return refContacts;
+    }
 });
 
 const filter = createReducer('',{
